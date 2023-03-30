@@ -160,9 +160,9 @@ class FilebaseClient {
 
     try {
       const { cid, car } = await FilebaseClient.encodeBlob(blob, { blockstore })
-      await FilebaseClient.storeCar(service, car, objectName || cid.toString())
+      const storedCid = await FilebaseClient.storeCar(service, car, objectName || cid.toString())
 
-      return cid.toString();
+      return storedCid;
     } finally {
       await blockstore.close()
     }
